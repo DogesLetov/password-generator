@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --main-font: "Raleway", sans-serif; 
+}
+.password-generator {
+    accent-color: #28a745;
+}
+
+.pg-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 24px;
+    font-family: var(--main-font);
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.pg-title {
+    margin-bottom: 24px;
+    color: #2c3e50;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Блок с паролем */
+.pg-password-box {
+    display: flex;
+    margin-bottom: 24px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.pg-password-box:focus-within {
+    border-color: #007bff;
+}
+
+.pg-password-input {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #f8f9fa;
+    font-family: var(--main-font);
+    letter-spacing: 1.5px;
+    color: #333;
+    font-weight: 600;
+}
+
+.pg-copy-btn {
+    padding: 0 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.2s;
+}
+
+.pg-copy-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.pg-copy-btn:disabled {
+    background-color: #a0c4ff;
+    cursor: not-allowed;
+}
+
+/* Настройки */
+.pg-settings-block {
+    margin-bottom: 20px;
+    text-align: left;
+    padding: 0 4px;
+}
+
+.pg-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+    font-size: 15px;
+}
+
+.pg-label-value {
+    background-color: #e9ecef;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #28a745;
+}
+
+.pg-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.pg-checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #444;
+    transition: color 0.2s;
+}
+
+.pg-checkbox-label:hover {
+    color: #000;
+}
+
+.pg-checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+/* Кнопка генерации */
+.pg-generate-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+    margin-top: 10px;
+}
+
+.pg-generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+}
+
+.pg-generate-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
