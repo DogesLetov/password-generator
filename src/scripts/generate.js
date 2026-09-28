@@ -3,7 +3,7 @@
 const charUp = 'QWERTYUIOPASDFGHJKLZXCVBNM';
 const charLow = 'qwertyuiopasdfghjklzxcvbnm';
 const charNum = '1234567890';
-const charSpec = '!@#$%^&*';
+const charSpec = '!@#$%^&*?_~';
 
 export function generatePassword(length = 8, options = {}) {
     const { 
