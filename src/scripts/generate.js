@@ -4,9 +4,6 @@ const CHAR_UPPER = 'QWERTYUIOPASDFGHJKLZXCVBNM';
 const CHAR_LOWER = 'qwertyuiopasdfghjklzxcvbnm';
 const CHAR_NUM   = '1234567890';
 const CHAR_SPEC  = '!@#$%^&*?_~';
-// Кириллица для локальных сервисов
-const CHAR_UPPER_CYR = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
-const CHAR_LOWER_CYR = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
 
 // Криптостойкий целое в диапазоне [0, max) без modulo bias
 function secureRandomInt(max) {
@@ -48,16 +45,9 @@ export function getCharSets(options) {
     if (options.useLower) sets.push(CHAR_LOWER);
     if (options.useNumbers) sets.push(CHAR_NUM);
     if (options.useSymbols) sets.push(CHAR_SPEC);
-    if (options.useCyrillicUpper) sets.push(CHAR_UPPER_CYR);
-    if (options.useCyrillicLower) sets.push(CHAR_LOWER_CYR);
     return sets;
 }
 
-/**
- * Генерация пароля.
- * options: { useUpper, useLower, useNumbers, useSymbols,
- *            useCyrillicUpper, useCyrillicLower, excludeAmbiguous }
- */
 export function generatePassword(length = 12, options = {}) {
     const { excludeAmbiguous = false } = options;
 
@@ -99,18 +89,20 @@ export const TEMPLATES = {
         label: 'Только строчные и цифры',
         options: { useUpper: false, useLower: true, useNumbers: true, useSymbols: false },
     },
-    cyrillic: {
-        label: 'Кириллица (для локальных сервисов)',
-        options: {
-            useUpper: false, useLower: false, useNumbers: true, useSymbols: false,
-            useCyrillicUpper: true, useCyrillicLower: true,
-        },
+    doc: {
+        label: 'doc',
+        options: { useUpper: true, useLower: true, useNumbers: true, useSymbols: true },
+        length: 8,
+    },
+    cdoc: {
+        label: 'cdoc',
+        options: { useUpper: true, useLower: true, useNumbers: false, useSymbols: false },
+        length: 5,
     },
 };
 
 const ALL_OFF = {
     useUpper: false, useLower: false, useNumbers: false, useSymbols: false,
-    useCyrillicUpper: false, useCyrillicLower: false,
 };
 
 export function applyTemplate(templateKey, currentOptions) {

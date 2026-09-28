@@ -14,9 +14,7 @@ const DEFAULT_OPTIONS = {
     useLower: true,
     useNumbers: true,
     useSymbols: true,
-    useCyrillicUpper: false,
-    useCyrillicLower: false,
-    excludeAmbiguous: false,
+    excludeAmbiguous: true,
 };
 
 const PasswordGenerator = () => {
@@ -36,8 +34,7 @@ const PasswordGenerator = () => {
     optionsRef.current = options;
 
     const hasAnyCharSet = (opts) =>
-        opts.useUpper || opts.useLower || opts.useNumbers || opts.useSymbols ||
-        opts.useCyrillicUpper || opts.useCyrillicLower;
+        opts.useUpper || opts.useLower || opts.useNumbers || opts.useSymbols;
 
     const pushToHistory = useCallback((pwd) => {
         if (!pwd) return;
@@ -223,14 +220,6 @@ const PasswordGenerator = () => {
                     <label className="pg-checkbox-label">
                         <input type="checkbox" checked={options.useSymbols} onChange={() => toggleOption('useSymbols')} />
                         Спецсимволы (!@#$)
-                    </label>
-                    <label className="pg-checkbox-label">
-                        <input type="checkbox" checked={options.useCyrillicUpper} onChange={() => toggleOption('useCyrillicUpper')} />
-                        Кириллица заглавные (А-Я)
-                    </label>
-                    <label className="pg-checkbox-label">
-                        <input type="checkbox" checked={options.useCyrillicLower} onChange={() => toggleOption('useCyrillicLower')} />
-                        Кириллица строчные (а-я)
                     </label>
                     <label className="pg-checkbox-label">
                         <input type="checkbox" checked={options.excludeAmbiguous} onChange={() => toggleOption('excludeAmbiguous')} />

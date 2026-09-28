@@ -3,7 +3,6 @@
 :root {
     --main-font: "Raleway", sans-serif;
 
-    /* Светлая тема (по умолчанию) */
     --pg-bg-page: #f0f2f5;
     --pg-bg-card: #ffffff;
     --pg-text-primary: #2c3e50;
@@ -46,7 +45,6 @@
 .password-generator {
     accent-color: var(--pg-green);
     background-color: var(--pg-bg-page);
-    min-height: 100vh;
     transition: background-color 0.3s;
 }
 
