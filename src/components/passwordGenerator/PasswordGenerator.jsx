@@ -68,10 +68,38 @@ const PasswordGenerator = () => {
         copiedTimer.current = setTimeout(() => setCopied(false), 2000);
     };
 
+    const fallbackCopy = (text) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        let ok = false;
+        try {
+            ok = document.execCommand('copy');
+        } catch (e) {
+            ok = false;
+        }
+        document.body.removeChild(ta);
+        return ok;
+    };
+
     const copyText = useCallback((text) => {
         if (!text) return;
         navigator.clipboard.writeText(text).then(flashCopied).catch(() => { });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (navigator.clipboard?.writeText) {
+            navigator.clipboard.writeText(text)
+                .then(flashCopied)
+                .catch(() => {
+                    if (fallbackCopy(text)) flashCopied();
+                });
+        } else if (fallbackCopy(text)) {
+            flashCopied();
+        }
     }, []);
 
     const handleCopy = () => copyText(password);
