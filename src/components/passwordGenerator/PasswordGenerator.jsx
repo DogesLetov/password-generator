@@ -88,18 +88,33 @@ const PasswordGenerator = () => {
         return ok;
     };
 
+    // navigator.clipboard доступен только в secure context (https / localhost).
+    // На http-доменах (внутренние стенды вроде begel) он undefined, и прямой вызов
+    // navigator.clipboard.writeText() падает с "Cannot read properties of undefined".
+    // К clipboard обращаемся ТОЛЬКО через локальную переменную после проверки.
     const copyText = useCallback((text) => {
-        if (!text) return;
-        navigator.clipboard.writeText(text).then(flashCopied).catch(() => { });
-        if (navigator.clipboard?.writeText) {
-            navigator.clipboard.writeText(text)
-                .then(flashCopied)
-                .catch(() => {
-                    if (fallbackCopy(text)) flashCopied();
-                });
-        } else if (fallbackCopy(text)) {
-            flashCopied();
+        if (!text) return false;
+        const nav = typeof navigator !== 'undefined' ? navigator : undefined;
+        const clipboard = nav ? nav.clipboard : undefined;
+        if (clipboard && typeof clipboard.writeText === 'function') {
+            try {
+                const p = clipboard.writeText(text);
+                if (p && typeof p.then === 'function') {
+                    p.then(flashCopied).catch(() => {
+                        if (fallbackCopy(text)) flashCopied();
+                    });
+                    return true;
+                }
+                flashCopied();
+                return true;
+            } catch (e) {
+                /* падаем в фолбэк ниже */
+            }
         }
+        const ok = fallbackCopy(text);
+        if (ok) flashCopied();
+        return ok;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleCopy = () => copyText(password);
@@ -108,7 +123,7 @@ const PasswordGenerator = () => {
         setTemplateKey(key);
         if (key !== 'custom') {
             setOptions((prev) => applyTemplate(key, prev));
-
+            // Если у шаблона задана фиксированная длина — применяем её
             const tplLength = TEMPLATES[key]?.length;
             if (typeof tplLength === 'number') {
                 setLength(tplLength);
