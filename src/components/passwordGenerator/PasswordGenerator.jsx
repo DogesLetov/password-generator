@@ -82,6 +82,10 @@ const PasswordGenerator = () => {
     const handleTemplateChange = (key) => {
         setTemplateKey(key);
         if (key !== 'custom') {
+            // Применяем заранее заданную длину шаблона
+            if (TEMPLATES[key]?.length) {
+                setLength(TEMPLATES[key].length);
+            }
             setOptions((prev) => applyTemplate(key, prev));
         }
     };
@@ -184,7 +188,7 @@ const PasswordGenerator = () => {
                         onChange={(e) => handleTemplateChange(e.target.value)}
                     >
                         {Object.entries(TEMPLATES).map(([key, t]) => (
-                            <option key={key} value={key}>{t.label}</option>
+                            <option key={key} value={key}>{t.label} ({t.length})</option>
                         ))}
                         {templateKey === 'custom' && <option value="custom">Свой набор</option>}
                     </select>
