@@ -3,6 +3,14 @@
 {
   "name": "password-generator",
   "compatibility_date": "2026-09-28",
+  "assets": {
+    // CRA собирает статику в папку build/
+    "directory": "./build",
+    // SPA-fallback: любой маршрут отдаёт index.html (для роутинга, если появится)
+    "not_found_handling": "single-page-application"
+    // binding НЕ указываем: он нужен только когда у Worker есть скрипт (main).
+    // Для чисто статического деплоя это assets-only Worker.
+  },
   // Пустой блок нужен, чтобы `wrangler preview` / деплой превью работал
   "previews": {}
 }
