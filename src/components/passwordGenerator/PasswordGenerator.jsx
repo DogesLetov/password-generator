@@ -70,7 +70,7 @@ const PasswordGenerator = () => {
 
     const copyText = useCallback((text) => {
         if (!text) return;
-        navigator.clipboard.writeText(text).then(flashCopied).catch(() => {});
+        navigator.clipboard.writeText(text).then(flashCopied).catch(() => { });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -80,6 +80,11 @@ const PasswordGenerator = () => {
         setTemplateKey(key);
         if (key !== 'custom') {
             setOptions((prev) => applyTemplate(key, prev));
+
+            const tplLength = TEMPLATES[key]?.length;
+            if (typeof tplLength === 'number') {
+                setLength(tplLength);
+            }
         }
     };
 

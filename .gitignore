@@ -1,1 +1,5 @@
-(empty)
+# Build artifacts
+build/
+
+# Dependencies
+node_modules/
