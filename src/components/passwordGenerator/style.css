@@ -1,59 +1,140 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    --main-font: "Raleway", sans-serif; 
+    --main-font: "Raleway", sans-serif;
+
+    /* Светлая тема (по умолчанию) */
+    --pg-bg-page: #f0f2f5;
+    --pg-bg-card: #ffffff;
+    --pg-text-primary: #2c3e50;
+    --pg-text-secondary: #555;
+    --pg-text-tertiary: #444;
+    --pg-input-bg: #f8f9fa;
+    --pg-input-text: #333;
+    --pg-border: #e0e0e0;
+    --pg-accent: #007bff;
+    --pg-accent-hover: #0056b3;
+    --pg-green: #28a745;
+    --pg-badge-bg: #e9ecef;
+    --pg-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --pg-history-bg: #f8f9fa;
+    --pg-history-hover: #eef3ff;
+    --pg-warning: #d9534f;
+    --pg-kbd-bg: #e9ecef;
 }
+
+[data-theme="dark"] {
+    --pg-bg-page: #12161c;
+    --pg-bg-card: #1e242e;
+    --pg-text-primary: #e8edf2;
+    --pg-text-secondary: #aab4c0;
+    --pg-text-tertiary: #c3ccd6;
+    --pg-input-bg: #141920;
+    --pg-input-text: #e8edf2;
+    --pg-border: #333d4a;
+    --pg-accent: #4da3ff;
+    --pg-accent-hover: #7dbcff;
+    --pg-green: #3dd68c;
+    --pg-badge-bg: #2a3340;
+    --pg-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    --pg-history-bg: #171d25;
+    --pg-history-hover: #243040;
+    --pg-warning: #ff7b72;
+    --pg-kbd-bg: #2a3340;
+}
+
 .password-generator {
-    accent-color: #28a745;
+    accent-color: var(--pg-green);
+    background-color: var(--pg-bg-page);
+    min-height: 100vh;
+    transition: background-color 0.3s;
 }
 
 .pg-container {
-    max-width: 400px;
+    max-width: 420px;
     margin: 50px auto;
     padding: 24px;
     font-family: var(--main-font);
-    background-color: #ffffff;
+    background-color: var(--pg-bg-card);
     border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--pg-shadow);
     text-align: center;
+    transition: background-color 0.3s;
+}
+
+.pg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
 .pg-title {
-    margin-bottom: 24px;
-    color: #2c3e50;
+    color: var(--pg-text-primary);
     font-size: 24px;
     font-weight: 700;
+}
+
+.pg-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.pg-theme-toggle input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 
 /* Блок с паролем */
 .pg-password-box {
     display: flex;
     margin-bottom: 24px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--pg-border);
     border-radius: 10px;
     overflow: hidden;
     transition: border-color 0.3s;
 }
 
 .pg-password-box:focus-within {
-    border-color: #007bff;
+    border-color: var(--pg-accent);
 }
 
 .pg-password-input {
     flex: 1;
+    min-width: 0;
     padding: 14px 16px;
     font-size: 18px;
     border: none;
     outline: none;
-    background-color: #f8f9fa;
+    background-color: var(--pg-input-bg);
     font-family: var(--main-font);
     letter-spacing: 1.5px;
-    color: #333;
+    color: var(--pg-input-text);
     font-weight: 600;
 }
 
+.pg-icon-btn {
+    padding: 0 12px;
+    background-color: var(--pg-badge-bg);
+    color: var(--pg-text-primary);
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: opacity 0.2s;
+}
+
+.pg-icon-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .pg-copy-btn {
-    padding: 0 20px;
-    background-color: #007bff;
+    padding: 0 18px;
+    background-color: var(--pg-accent);
     color: white;
     border: none;
     cursor: pointer;
@@ -62,11 +143,11 @@
 }
 
 .pg-copy-btn:hover:not(:disabled) {
-    background-color: #0056b3;
+    background-color: var(--pg-accent-hover);
 }
 
 .pg-copy-btn:disabled {
-    background-color: #a0c4ff;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
@@ -83,16 +164,32 @@
     align-items: center;
     margin-bottom: 10px;
     font-weight: 600;
-    color: #555;
+    color: var(--pg-text-secondary);
     font-size: 15px;
 }
 
 .pg-label-value {
-    background-color: #e9ecef;
+    background-color: var(--pg-badge-bg);
     padding: 2px 10px;
     border-radius: 6px;
     font-size: 14px;
-    color: #28a745;
+    color: var(--pg-green);
+}
+
+.pg-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid var(--pg-border);
+    border-radius: 8px;
+    background-color: var(--pg-input-bg);
+    color: var(--pg-input-text);
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+}
+
+.pg-select:focus {
+    border-color: var(--pg-accent);
 }
 
 .pg-slider {
@@ -108,12 +205,12 @@
     margin-bottom: 12px;
     cursor: pointer;
     font-size: 15px;
-    color: #444;
+    color: var(--pg-text-tertiary);
     transition: color 0.2s;
 }
 
 .pg-checkbox-label:hover {
-    color: #000;
+    color: var(--pg-text-primary);
 }
 
 .pg-checkbox-label input[type="checkbox"] {
@@ -123,28 +220,158 @@
     cursor: pointer;
 }
 
-/* Кнопка генерации */
+.pg-warning {
+    color: var(--pg-warning);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Кнопки генерации */
+.pg-batch-block {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
 .pg-generate-btn {
-    width: 100%;
+    flex: 1;
     padding: 14px;
     background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.2s;
     box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
-    margin-top: 10px;
 }
 
-.pg-generate-btn:hover {
+.pg-batch-btn {
+    flex: 1;
+    padding: 14px;
+    background-color: var(--pg-badge-bg);
+    color: var(--pg-text-primary);
+    border: 2px solid var(--pg-border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, border-color 0.2s;
+}
+
+.pg-generate-btn:hover:not(:disabled),
+.pg-batch-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
 }
 
-.pg-generate-btn:active {
+.pg-batch-btn:hover:not(:disabled) {
+    border-color: var(--pg-accent);
+}
+
+.pg-generate-btn:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.pg-generate-btn:disabled,
+.pg-batch-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* История и партии */
+.pg-history {
+    margin-top: 20px;
+    text-align: left;
+    border: 1px solid var(--pg-border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pg-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: var(--pg-badge-bg);
+}
+
+.pg-history-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pg-text-secondary);
+}
+
+.pg-clear-btn,
+.pg-export-btn {
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--pg-accent);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+.pg-clear-btn:hover,
+.pg-export-btn:hover {
+    text-decoration: underline;
+}
+
+.pg-history-list {
+    background-color: var(--pg-history-bg);
+}
+
+.pg-history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--pg-border);
+    transition: background-color 0.15s;
+}
+
+.pg-history-item:last-child {
+    border-bottom: none;
+}
+
+.pg-history-item:hover {
+    background-color: var(--pg-history-hover);
+}
+
+.pg-history-item code {
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--pg-input-text);
+    word-break: break-all;
+}
+
+.pg-history-copy {
+    font-size: 14px;
+    opacity: 0.4;
+    margin-left: 10px;
+}
+
+.pg-history-item:hover .pg-history-copy {
+    opacity: 1;
+}
+
+/* Подсказка о горячих клавишах */
+.pg-hint {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--pg-text-secondary);
+}
+
+.pg-hint kbd {
+    background-color: var(--pg-kbd-bg);
+    border: 1px solid var(--pg-border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: inherit;
+    font-size: 11px;
+    color: var(--pg-text-primary);
 }
