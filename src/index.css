@@ -1,3 +1,13 @@
+/* Фиксируем цвет фона страницы на html и body, чтобы при тёмной теме
+   не оставалось белых полей (за контентом и при «резиновом» скролле) */
+html,
+body,
+#root {
+    min-height: 100vh;
+    background-color: var(--pg-bg-page);
+    transition: background-color 0.3s;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

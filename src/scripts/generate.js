@@ -86,21 +86,26 @@ export function generatePassword(length = 12, options = {}) {
 }
 
 // ===== Шаблоны (пресеты наборов символов) =====
+// length — фиксированная длина пароля для каждого шаблона
 export const TEMPLATES = {
     full: {
         label: 'Надёжный (буквы+цифры+спецсимволы)',
+        length: 16,
         options: { useUpper: true, useLower: true, useNumbers: true, useSymbols: true },
     },
     alphanumeric: {
         label: 'Буквы и цифры (без спецсимволов)',
+        length: 12,
         options: { useUpper: true, useLower: true, useNumbers: true, useSymbols: false },
     },
     simple: {
         label: 'Только строчные и цифры',
+        length: 10,
         options: { useUpper: false, useLower: true, useNumbers: true, useSymbols: false },
     },
     cyrillic: {
         label: 'Кириллица (для локальных сервисов)',
+        length: 14,
         options: {
             useUpper: false, useLower: false, useNumbers: true, useSymbols: false,
             useCyrillicUpper: true, useCyrillicLower: true,
