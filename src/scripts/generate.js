@@ -3,7 +3,7 @@
 const CHAR_UPPER = 'QWERTYUIOPASDFGHJKLZXCVBNM';
 const CHAR_LOWER = 'qwertyuiopasdfghjklzxcvbnm';
 const CHAR_NUM   = '1234567890';
-const CHAR_SPEC  = '!@#$%^&*?_~-+=()[]{}<>.,:;';
+const CHAR_SPEC  = '!@#$%^&*?_~';
 // Кириллица для локальных сервисов
 const CHAR_UPPER_CYR = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
 const CHAR_LOWER_CYR = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
